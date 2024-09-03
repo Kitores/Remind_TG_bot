@@ -9,11 +9,11 @@ from Scripts.handlers import apsched
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
 # Объект бота
-bot = Bot(token="6442408002:AAFAu3GRCZVcVrie58j6hmcbqOemHz8_dzY")
+bot = Bot(token="TOKEN")
 # Диспетчер
 dp = Dispatcher()
-User_ID = 874999696
-txt = "fnjf;jlnalnf"
+User_ID = "user_id"
+txt = "Hello"
 scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
 scheduler.add_job(apsched.send_message_time, trigger='date', run_date=datetime.now() + timedelta(seconds=10),
                   kwargs={'bot': bot})
@@ -30,28 +30,7 @@ async def cmd_start(message: types.Message):
 @dp.message(Command("ret"))
 async def remind(messaege: types.Message):
     remi(User_ID)
-    await bot.send_message(User_ID, "sfsfsf")
-
-# async def send_message(message: txt, hour:int, minute: int):
-#     try:
-#         await bot.send_message(chat_id=User_ID, text=txt)
-#     except Exception as e:
-#         print(e)
-
-# async def send_scheduled_messages():
-#
-#
-#     scheduler.start()
-#     await asyncio.sleep(24 * 60 * 60)
-#     scheduler.shutdown()
-# async def scheduler():
-#     aioschedule.every().day.at("11:45").do(send_message(txt,12,32))
-#     while True:
-#         await aioschedule.run_pending()
-#         await asyncio.sleep(1)
-
-# async def on_startup(dp):
-#     asyncio.create_task(scheduler())
+    await bot.send_message(User_ID, "Hi")
 
 #Запуск процесса поллинга новых апдейтов
 async def main():
@@ -60,6 +39,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    # loop = asyncio.get_event_loop()
-    # loop.create_task(send_scheduled_messages())
-    # executor.start_polling(dp, loop=loop)
+  
